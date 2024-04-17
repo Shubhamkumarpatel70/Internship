@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
+import path from "path";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ mongoose
     console.log(err);
   });
 
+const __dirname = path.resolve();
 const app = express();
 
 app.use(express.json());
@@ -29,6 +31,12 @@ app.use("/api/user", userRoute);
 
 app.listen(3000, () => {
   console.log("server is running on port 3000");
+});
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 // define middleware for error
