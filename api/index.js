@@ -2,20 +2,20 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import authRoute from "./routes/auth.route.js";
-import userRoute from "./routes/user.route.js";
+// import authRoute from "./routes/auth.route.js";
+// import userRoute from "./routes/user.route.js";
 import path from "path";
 
 dotenv.config();
 
-mongoose
-  .connect(process.env.MONGO)
-  .then(() => {
-    console.log("MongoDb is connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// mongoose
+//   .connect(process.env.MONGO)
+//   .then(() => {
+//     console.log("MongoDb is connected");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 const __dirname = path.resolve();
 const app = express();
@@ -25,8 +25,8 @@ app.use(cookieParser());
 
 
 // define route middleware
-app.use("/api/auth", authRoute);
-app.use("/api/user", userRoute);
+// app.use("/api/auth", authRoute);
+// app.use("/api/user", userRoute);
 
 
 app.listen(3000, () => {
